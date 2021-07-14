@@ -36,13 +36,6 @@ namespace ArduinoTasker
         void startAllTasks();
 
         /**
-         * @brief  Adds new instance of task with given id from TasksPool to memory and runs it
-         * @warning Task bust be instanced by new keyword!
-         * @param  task: Instance of task
-         */
-        bool startTask(Task *task);
-
-        /**
          * @brief  Removes task with given id from memory if exists
          * @param  id: id of task
          */
@@ -71,6 +64,13 @@ namespace ArduinoTasker
          * @retval Delta time from last task setp in us 
          */
         uint32_t getDelta(Task *task);
+
+        /**
+         * @brief  Adds new instance of task with given id from TasksPool to memory and runs it
+         * @warning Task bust be instanced by new keyword!
+         * @param  task: Instance of task
+         */
+        bool startTaskByPointer(Task *task);
     };
 
 } // namespace ArduinoTasker

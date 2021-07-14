@@ -39,10 +39,10 @@ namespace ArduinoTasker
     bool TaskManager::startTask(uint16_t id, bool wrapId)
     {
         Task *task = this->fetch(id, wrapId);
-        return this->startTask(task);
+        return this->startTaskByPointer(task);
     }
 
-    bool TaskManager::startTask(Task *task)
+    bool TaskManager::startTaskByPointer(Task *task)
     {
         if (task != nullptr)
         {
@@ -57,7 +57,7 @@ namespace ArduinoTasker
     {
         for (uint16_t i = 0; i < _tasksPool->count(); i++)
         {
-            this->startTask(this->fetch(i, false));
+            this->startTaskByPointer(this->fetch(i, false));
         }
     }
 
