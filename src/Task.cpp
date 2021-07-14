@@ -32,4 +32,8 @@ namespace ArduinoTasker
         _lastUpdate = micros();
     }
 
+    void Task::cache() {
+
+    }
+
 } // namespace ArduinoTasker
