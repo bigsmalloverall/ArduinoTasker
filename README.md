@@ -8,10 +8,10 @@ Arduino Tasker is a simple framework for creating task based code. The goal is t
 
 Less detailed version in *examples/Blink*.
 
-Below example turns builtin led of Arduino Uno on and off every second.
+Below example turns builtin led of Arduino Uno on and off every second indefinietly.
 
 ### Task definition
-Every task needs to be defined by you as **child** class of **Task class** which lives inside **ArduinoTasker** namespace. It **requires update** function to be defined and to **task id** parameter. There is also cache function that is called before update, but it is optional. The purpose of cache will be explained in another examples (look: examples folder) Everything else is up to you. In this example we need led pin and time interval. You can put everything in one file, but for code clarity I’ll split class declaration and definition. 
+Every task needs to be defined by you as **child** class of **Task class** which lives inside **ArduinoTasker** namespace. It **requires update** function and to **task id** parameter. There is also cache function that is called before update, but it is optional. The purpose of cache will be explained in another examples (look: examples folder) Everything else is up to you. In this example we need led pin and time interval. You can put everything in one file, but for code clarity I’ll split class declaration and definition. 
 
 ``` C++
 // LedBlinkTask.h
@@ -75,10 +75,10 @@ void LedBlinkTask::update(uint32_t deltaT)
 }
 ```
 
-The task definition looks very similar to main Arduino loop. Constructor is like ```void setup()``` and  ```void update(...)``` is like ``` void loop()```. The code for such a simple task is quite substantial, but this is just an example. You can use this to make as complicated stuff as you want!
+The task definition looks very similar to main Arduino loop. Constructor is like ```void setup()``` and  ```void update(...)``` is like ``` void loop()```. The code for such a simple task is quite substantial, but this is just an example. You can use this to make as complicated stuff if you want!
 
 ### TaskManager
-This library allows you to create many tasks templates that are loaded in to memory only when they are running. It achieves that with TaskManager, which is imitates **simple** operating system. Manager fetches Tasks from user defined TasksPool, which is collection defined by You of templates for Tasks.
+This library allows you to create many tasks templates that are loaded in to memory only when they are running (or needed). It achieves that with TaskManager, which is imitates **simple** operating system. Manager fetches Tasks from user defined TasksPool, which is collection of templates for Tasks.
 
 ``` C++
 // Arbitrary example
@@ -100,7 +100,7 @@ void loop()
 }
 ```
 
-Tasks can also be added manually. But you need to make that it is created with **new** keyword as when the task is finished it will be automatically deleted from memory. Make sure to free all allocated memory in you task in destructor to avoid leaks! 
+Tasks can also be added manually. But you need to make sure that it is created with **new** keyword as when the task is finished it will be automatically deleted from memory. Make sure to free all allocated memory in you task in destructor to avoid leaks! 
 
 ``` C++
 // Arbitrary example
@@ -117,7 +117,7 @@ void setup()
 ```
 
 ### TasksPool
-As mentioned before. TasksPool is collection of class templates. It’s main function is to easily iterate through your task and load them to memory only when they are needed. That moment is also defined by you. In practice tasks pool is just child class of TasksPool class with two mandatory functions: tasks and count.This time it’s the code is small enough to just cram everything into one header file. But in larger project it would be advised to split.
+As mentioned before. TasksPool is collection of class templates. It’s main function is to easily iterate through your task and load them to memory only when they are needed. That moment is also defined by you. In practice tasks pool is just child class of TasksPool class with two mandatory functions: tasks and count.This time it’s the code is small enough to just cram everything into one header file. But in larger project it is not advised as it obscures readability.
 
 ``` C++
 //  CustomTaskPool.h
