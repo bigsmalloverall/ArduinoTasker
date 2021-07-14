@@ -2,7 +2,7 @@
 #define ARDUINO_TASKS_MANAGER
 
 #include <Arduino.h>
-#include <LinkedList.h>
+#include "LinkedList.h"
 #include "Task.h"
 #include "TasksPool.h"
 

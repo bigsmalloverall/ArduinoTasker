@@ -2,7 +2,7 @@
 #define ARDUINO_TASKS_POOL
 
 #include <Arduino.h>
-#include "ArduinoTasker/Task.h"
+#include "Task.h"
 
 namespace ArduinoTasker
 {
