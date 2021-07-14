@@ -253,8 +253,6 @@ public:
 #include <TaskManager.h>
 #include "CustomTaskPool.h"
 
-#define LED_PIN 13
-
 using namespace ArduinoTasker;
 
 TaskManager *manager;
