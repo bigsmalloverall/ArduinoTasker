@@ -2,14 +2,7 @@
 
 Arduino Tasker is a simple framework for creating task based code. The goal is to never use delay() so many tasks can run "concurrently" and to be able to neatly segregate your code features. It is designed to run on devices with limited memory like Arduino Uno. It loosely bases operation workflow on RTOS (Real Time Operating System) in that you can time tasks updates in  semi predictable intervals. 
 
-### Consider giving me a buck!
-
-<form action="https://www.paypal.com/donate" method="post" target="_top">
-<input type="hidden" name="hosted_button_id" value="4U6UWETUNPX4C" />
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-<img alt="" border="0" src="https://www.paypal.com/en_PL/i/scr/pixel.gif" width="1" height="1" />
-</form>
-
+[Consider giving me a buck!](https://www.paypal.com/donate?hosted_button_id=4U6UWETUNPX4C&source=url)
 
 ## How to use
 
