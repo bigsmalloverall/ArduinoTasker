@@ -8,7 +8,7 @@ Arduino Tasker is a simple framework for creating task based code. The goal is t
 
 Less detailed version in *examples/Blink*.
 
-Below example turns led building of Arduino Uno on and off every second.
+Below example turns builtin led of Arduino Uno on and off every second.
 
 ### Task definition
 Every task needs to be defined by you as **child** class of **Task class** which lives inside **ArduinoTasker** namespace. It **requires update** function to be defined and to **task id** parameter. There is also cache function that is called before update, but it is optional. The purpose of cache will be explained in another examples (look: examples folder) Everything else is up to you. In this example we need led pin and time interval. You can put everything in one file, but for code clarity I’ll split class declaration and definition. 
