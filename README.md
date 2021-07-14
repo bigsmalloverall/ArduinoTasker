@@ -1,6 +1,6 @@
 # Arduino Tasker
 
-Arduino Tasker is a simple framework for creating task based code. The goal is to never use delay() so many tasks can run "concurrently" and to be able to neatly segregate your code features. It is designed to run on devices with limited memory like Arduino Uno. It loosely bases operation workflow on RTOS (Real Time Operating System) in that you can time tasks updates in  semi predictable intervals. 
+Arduino Tasker is a simple framework for creating task based code. The goal is to never use delay() so many tasks can run <concurrently" and to be able to neatly segregate your code features. It is designed to run on devices with limited memory like Arduino Uno. It loosely bases operation workflow on RTOS (Real Time Operating System) in that you can time tasks updates in  semi predictable intervals. 
 
 [Consider giving me a buck!](https://www.paypal.com/donate?hosted_button_id=4U6UWETUNPX4C&source=url)
 
@@ -16,7 +16,7 @@ Every task needs to be defined by you as **child** class of **Task class** which
 ``` C++
 // LedBlinkTask.h
 
-#include "Task.h"
+#include <Task.h>
 
 class LedBlinkTask : public ArduinoTasker::Task
 {
@@ -50,7 +50,7 @@ LedBlinkTask::LedBlinkTask(uint16_t id, uint8_t ledPin, uint32_t frameTime) : Ta
 {
     _ledPin = ledPin;
     _frameTime = frameTime; // Default time is 1 000 000 us = 1s
-    pinMode(pin, OUTPUT); // Set ledPin as output;
+    pinMode(ledPin, OUTPUT); // Set ledPin as output;
 }
 
 LedBlinkTask::~LedBlinkTask()
@@ -124,7 +124,7 @@ As mentioned before. TasksPool is collection of class templates. It’s main fun
 
 #include <TasksPool.h>
 
-class CustomTaskPool : public TasksPool
+class CustomTaskPool : public ArduinoTasker::TasksPool
 {
 public:
     Task *tasks(uint16_t id)
@@ -161,7 +161,7 @@ Now that everything is defined we can put it together
 ``` C++
 // LedBlinkTask.h
 
-#include "Task.h"
+#include <Task.h>
 
 class LedBlinkTask : public ArduinoTasker::Task
 {
@@ -187,7 +187,7 @@ LedBlinkTask::LedBlinkTask(uint16_t id, uint8_t ledPin, uint32_t frameTime) : Ta
 {
     _ledPin = ledPin;
     _frameTime = frameTime;
-    pinMode(pin, OUTPUT);
+    pinMode(ledPin, OUTPUT);
 }
 
 LedBlinkTask::~LedBlinkTask()
@@ -213,7 +213,7 @@ void LedBlinkTask::update(uint32_t deltaT)
 
 #include <TasksPool.h>
 
-class CustomTaskPool : public TasksPool
+class CustomTaskPool : public ArduinoTasker::TasksPool
 {
 public:
     Task *tasks(uint16_t id)
@@ -258,3 +258,10 @@ void loop()
     manager->update();
 }
 ```
+
+# Other functions
+## Tasks
+## TaskManager
+
+
+[Consider giving me a buck!](https://www.paypal.com/donate?hosted_button_id=4U6UWETUNPX4C&source=url)
