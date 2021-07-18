@@ -1,3 +1,15 @@
+/*
+* Blink example for Arduino Tasker
+* 
+* Header file declaring all needed variables and functions.
+* 
+* by Jakub Wójcik 2021
+* jakub.wojcik2017@gmail.com
+* 
+* https://github.com/bigsmalloverall/ArduinoTasker
+*/
+
+#include <Arduino.h>
 #include <Task.h>
 
 class LedBlinkTask : public ArduinoTasker::Task

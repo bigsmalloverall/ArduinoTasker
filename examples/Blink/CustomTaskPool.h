@@ -1,3 +1,18 @@
+/*
+* Blink example for Arduino Tasker
+* 
+* TasksPool is collection of class templates. 
+* It’s main function is to easily iterate through your task and load them to memory only when they are needed.
+* 
+* In this example there is only one task with unique id of 0.
+* 
+* by Jakub Wójcik 2021
+* jakub.wojcik2017@gmail.com
+* 
+* https://github.com/bigsmalloverall/ArduinoTasker
+*/
+
+#include <Arduino.h>
 #include <TasksPool.h>
 #include <Task.h>
 #include "LedBlinkTask.h"

@@ -1,3 +1,15 @@
+/*
+* Blink example for Arduino Tasker
+* 
+* This file implements all declared functions from LedBlinkTask.h
+* 
+* by Jakub Wójcik 2021
+* jakub.wojcik2017@gmail.com
+* 
+* https://github.com/bigsmalloverall/ArduinoTasker
+*/
+
+#include <Arduino.h>
 #include "LedBlinkTask.h"
 
 LedBlinkTask::LedBlinkTask(uint16_t id, uint8_t ledPin, uint32_t frameTime) : Task(id) // Task id passed to Task constructor
