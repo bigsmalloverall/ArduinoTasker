@@ -12,6 +12,9 @@
 * https://github.com/bigsmalloverall/ArduinoTasker
 */
 
+#ifndef ARDUINO_TASKER_CUSTOM_TASKS_POOL
+#define ARDUINO_TASKER_CUSTOM_TASKS_POOL
+
 #include <Arduino.h>
 #include <TasksPool.h>
 #include <Task.h>
@@ -63,3 +66,5 @@ public:
         return 3;
     }
 };
+
+#endif

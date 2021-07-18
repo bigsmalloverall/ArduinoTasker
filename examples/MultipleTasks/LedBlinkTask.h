@@ -9,6 +9,9 @@
 * https://github.com/bigsmalloverall/ArduinoTasker
 */
 
+#ifndef ARDUINO_TASKER_LED_BLINK_TASK
+#define ARDUINO_TASKER_LED_BLINK_TASK
+
 #include <Arduino.h>
 #include <Task.h>
 
@@ -33,3 +36,5 @@ public:
     // deltaT is time in us from last time update() was called
     void update(uint32_t deltaT);
 };
+
+#endif
