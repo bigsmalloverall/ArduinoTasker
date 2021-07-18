@@ -109,7 +109,7 @@ void loop()
 }
 ```
 
-Tasks can also be added manually. But you need to make sure that it is created with **new** keyword as when the task is finished it will be automatically deleted from memory. Make sure to free all allocated memory in you task in destructor to avoid leaks! 
+Tasks can also be added manually. But you need to make sure that it is marked as do not delete. Make sure to free all allocated memory in you task in destructor, the task itself and set (if exist) pointers to nullptr to avoid leaks! 
 
 ``` C++
 // Arbitrary example
@@ -121,7 +121,14 @@ ArduinoTasker::TaskManager manager;
 
 void setup()
 {
-    manager.startTaskByPointer(new TestTask());
+    Task *task = new TestTask();
+
+    // Make sure to mark task as do not delete so it is not deleted from memory
+    // when it is done;
+    // You need to manually manage pointer to this task e.g. manually delete it from memory when it is not needed.
+    // Otherwise TaskManager will delete this task. Your pointers will pont to empty mem location which may cause undefined behavior.
+    task->doNotDelete();
+    manager.startTaskByPointer(task);
 }
 ```
 

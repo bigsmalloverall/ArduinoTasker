@@ -96,7 +96,7 @@ namespace ArduinoTasker
 
             if (task != nullptr)
             {
-                if (task->isDone())
+                if (task->isDone() && task->canBeDeleted())
                 {
                     stopTask(task->getId());
                 }

@@ -2,6 +2,7 @@
 #define ARDUINO_TASKS_TASK
 
 #include <Arduino.h>
+#include <Status.h>
 
 namespace ArduinoTasker
 {
@@ -12,7 +13,7 @@ namespace ArduinoTasker
          * @brief  Task constructor
          * @param  id: id of task
          */
-        Task(uint16_t id);
+        Task(uint16_t id, bool deleteWhenDone = true);
 
         /**
          * @retval id of task
@@ -28,6 +29,16 @@ namespace ArduinoTasker
          * @retval If this task has finished
          */
         bool isDone();
+
+        /**
+         * @retval If this task should be deleted from memory
+         */
+        bool canBeDeleted();
+
+        /**
+         * @brief Marks taks as don not delete. So it is not deleted when it's finished
+         */
+        void doNotDelete();
 
         /**
          * @brief  Stops task execution, prepares it to be deleted
@@ -51,7 +62,7 @@ namespace ArduinoTasker
         void endUpdate();
 
     protected:
-        bool _isDone{false};
+        Status _status; // Bit field
         uint16_t _id;
         uint32_t _lastUpdate{0};
     };
