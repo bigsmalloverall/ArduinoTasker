@@ -9,7 +9,6 @@
 * https://github.com/bigsmalloverall/ArduinoTasker
 */
 
-
 #ifndef ARDUINO_TASKER_LED_BLINK_TASK
 #define ARDUINO_TASKER_LED_BLINK_TASK
 
