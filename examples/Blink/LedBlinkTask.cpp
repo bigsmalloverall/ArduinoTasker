@@ -17,6 +17,9 @@ LedBlinkTask::LedBlinkTask(uint16_t id, uint8_t ledPin, uint32_t frameTime) : Ta
     _ledPin = ledPin;
     _frameTime = frameTime; // Default time is 1 000 000 us = 1s
     pinMode(ledPin, OUTPUT); // Set ledPin as output;
+
+    Serial.print("LED_PIN");
+    Serial.println(ledPin);
 }
 
 LedBlinkTask::~LedBlinkTask()
@@ -32,6 +35,7 @@ void LedBlinkTask::update(uint32_t deltaT)
     // It might be helpful to think of this as changing frame in animation
     if (_sumDeltaT > _frameTime)
     {
+        Serial.println("Blink");
         digitalWrite(_ledPin, _ledState); // Write LED state
         _ledState = !_ledState; // Change state to opposite
         _sumDeltaT = 0; // Reset time passed

@@ -12,6 +12,7 @@
 
 #include <Arduino.h>
 #include <TaskManager.h>
+#include <TasksPool.h>
 #include "CustomTaskPool.h"
 
 using namespace ArduinoTasker;
@@ -20,7 +21,14 @@ TaskManager *manager;
 
 void setup()
 {
-    manager = new TaskManager(new CustomTaskPool());
+    Serial.begin(9600);
+    while(!Serial);
+
+    Serial.println("init");
+
+    TasksPool *pool = new CustomTaskPool();
+    
+    manager = new TaskManager(pool);
     manager->startTask(0);
 }
 

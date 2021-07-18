@@ -6,7 +6,7 @@ namespace ArduinoTasker
     TaskManager::TaskManager(TasksPool *tasksPool)
     {
         _tasksPool = tasksPool;
-        TaskManager();
+        _runningTasks = new LinkedList<Task *>();
     }
 
     TaskManager::TaskManager()

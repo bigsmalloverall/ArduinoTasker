@@ -28,7 +28,7 @@ public:
             case 0:
                 // Task id as first parameter
                 // LED_PIN is constant from global scope, can be any uint
-                return new LedBlinkTask(0, 13);
+                return new LedBlinkTask(0, 8);
 
             default:
                 // If id is invalid return nullptr
