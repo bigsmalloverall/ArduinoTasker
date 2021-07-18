@@ -22,13 +22,11 @@ TaskManager *manager;
 void setup()
 {
     Serial.begin(9600);
-    while(!Serial);
-
-    Serial.println("init");
-
-    TasksPool *pool = new CustomTaskPool();
+    Serial.begin(9600);
+    delay(1000);
     
-    manager = new TaskManager(pool);
+    Serial.println("init");
+    manager = new TaskManager(new CustomTaskPool());
     manager->startTask(0);
 }
 
