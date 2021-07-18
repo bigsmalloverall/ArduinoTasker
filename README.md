@@ -16,6 +16,7 @@ Every task needs to be defined by you as **child** class of **Task class** which
 ``` C++
 // LedBlinkTask.h
 
+#include <Arduino.h>
 #include <Task.h>
 
 class LedBlinkTask : public ArduinoTasker::Task
@@ -44,6 +45,7 @@ public:
 ``` C++
 // LedBlinkTask.cpp
 
+#include <Arduino.h>
 #include "LedBlinkTask.h"
 
 LedBlinkTask::LedBlinkTask(uint16_t id, uint8_t ledPin, uint32_t frameTime) : Task(id) // Task id passed to Task constructor
@@ -122,9 +124,12 @@ As mentioned before. TasksPool is collection of class templates. It’s main fun
 ``` C++
 //  CustomTaskPool.h
 
+#include <Arduino.h>
 #include <TasksPool.h>
 #include <Task.h>
 #include "LedBlinkTask.h"
+
+extern const uint8_t ledPin;
 
 class CustomTaskPool : public ArduinoTasker::TasksPool
 {
@@ -137,7 +142,7 @@ public:
             case 0:
                 // Task id as first parameter
                 // LED_PIN is constant from global scope, can be any uint
-                return new LedBlinkTask(0, 13);
+                return new LedBlinkTask(0, ledPin);
 
             default:
                 // If id is invalid return nullptr
@@ -163,6 +168,7 @@ Now that everything is defined we can put it together
 ``` C++
 // LedBlinkTask.h
 
+#include <Arduino.h>
 #include <Task.h>
 
 class LedBlinkTask : public ArduinoTasker::Task
@@ -183,6 +189,7 @@ public:
 ``` C++
 // LedBlinkTask.cpp
 
+#include <Arduino.h>
 #include "LedBlinkTask.h"
 
 LedBlinkTask::LedBlinkTask(uint16_t id, uint8_t ledPin, uint32_t frameTime) : Task(id) 
@@ -213,6 +220,7 @@ void LedBlinkTask::update(uint32_t deltaT)
 ``` C++
 // CustomTaskPool.h
 
+#include <Arduino.h>
 #include <TasksPool.h>
 #include <Task.h>
 #include "LedBlinkTask.h"
@@ -250,8 +258,12 @@ public:
 
 ``` C++
 // main.cpp
+#include <Arduino.h>
+#include <pins_arduino.h>
 #include <TaskManager.h>
 #include "CustomTaskPool.h"
+
+const uint8_t ledPin = 8; // Const from pins_arduino can be any arduino pin.
 
 using namespace ArduinoTasker;
 
