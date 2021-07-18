@@ -16,6 +16,7 @@
 #include <TasksPool.h>
 #include <Task.h>
 #include "LedBlinkTask.h"
+#include "SerialLoopTask.h"
 
 extern const uint8_t ledPin;
 extern const uint8_t ledPin2;
@@ -24,7 +25,8 @@ class CustomTaskPool : public ArduinoTasker::TasksPool
 {
 public:
     ArduinoTasker::Task *tasks(uint16_t id)
-    {
+    {   
+        // Make sure the ids are unique!
         switch (id)
         {
             // Case index should be equal to task id
@@ -38,6 +40,10 @@ public:
                 // ledPin2 is constant from global scope
                 // This task will blink ledPin2 every 0,5 s
                 return new LedBlinkTask(1, ledPin2, 500000);
+            
+            case 2:
+                // This task will print "1000000 loops!" every 1000000 loops
+                return new SerialLoopTask(2);
 
             default:
                 // If id is invalid return nullptr
@@ -50,8 +56,10 @@ public:
 
     uint16_t count()
     {
+        // Make sure to update this number!
+
         // This value needs to be incremented manually and 
         // should be equal to the number of cases in switch
-        return 1;
+        return 3;
     }
 };

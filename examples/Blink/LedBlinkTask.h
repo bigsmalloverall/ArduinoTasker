@@ -15,7 +15,7 @@
 class LedBlinkTask : public ArduinoTasker::Task
 {
 private:
-    // Internal state cholders:
+    // Internal state holders:
     bool _ledState{false};  // Current state of LED
     uint8_t _ledPin{0};     // Pin of LED
     uint32_t _frameTime{0}; // Delay duration
