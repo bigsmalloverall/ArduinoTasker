@@ -1,3 +1,10 @@
+- [Arduino Tasker](#arduino-tasker)
+  - [How to use](#how-to-use)
+    - [Task definition](#task-definition)
+    - [TaskManager](#taskmanager)
+    - [TasksPool](#taskspool)
+  - [Final code](#final-code)
+
 # Arduino Tasker
 
 Arduino Tasker is a simple framework for creating task based code. The goal is to never use delay() so many tasks can run <concurrently" and to be able to neatly segregate your code features. It is designed to run on devices with limited memory like Arduino Uno. It loosely bases operation workflow on RTOS (Real Time Operating System) in that you can time tasks updates in  semi predictable intervals. 
