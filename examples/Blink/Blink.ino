@@ -11,9 +11,12 @@
 */
 
 #include <Arduino.h>
+#include <pins_arduino.h>
 #include <TaskManager.h>
 #include <TasksPool.h>
 #include "CustomTaskPool.h"
+
+const uint8_t ledPin = LED_BUILTIN; // Const from pins_arduino can be any arduino pin.
 
 using namespace ArduinoTasker;
 

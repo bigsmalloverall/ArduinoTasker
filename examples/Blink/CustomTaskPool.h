@@ -17,6 +17,8 @@
 #include <Task.h>
 #include "LedBlinkTask.h"
 
+extern const uint8_t ledPin;
+
 class CustomTaskPool : public ArduinoTasker::TasksPool
 {
 public:
@@ -27,8 +29,8 @@ public:
             // Case index should be equal to task id
             case 0:
                 // Task id as first parameter
-                // LED_PIN is constant from global scope, can be any uint
-                return new LedBlinkTask(0, 8);
+                // ledPin is constant from global scope
+                return new LedBlinkTask(0, ledPin);
 
             default:
                 // If id is invalid return nullptr
