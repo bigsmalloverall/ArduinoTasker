@@ -22,6 +22,8 @@ Every task needs to be defined by you as **child** class of **Task class** which
 
 ``` C++
 // LedBlinkTask.h
+#ifndef ARDUINO_TASKER_LED_BLINK_TASK
+#define ARDUINO_TASKER_LED_BLINK_TASK
 
 #include <Arduino.h>
 #include <Task.h>
@@ -47,6 +49,7 @@ public:
     // deltaT is time in us from last time update() was called
     void update(uint32_t deltaT);
 };
+#endif
 ```
 
 ``` C++
@@ -130,6 +133,8 @@ As mentioned before. TasksPool is collection of class templates. It’s main fun
 
 ``` C++
 //  CustomTaskPool.h
+#ifndef ARDUINO_TASKER_CUSTOM_TASKS_POOL
+#define ARDUINO_TASKER_CUSTOM_TASKS_POOL
 
 #include <Arduino.h>
 #include <TasksPool.h>
@@ -167,6 +172,7 @@ public:
         return 1;
     }
 };
+#endif
 ```
 
 ## Final code
@@ -174,6 +180,8 @@ Now that everything is defined we can put it together
 
 ``` C++
 // LedBlinkTask.h
+#ifndef ARDUINO_TASKER_LED_BLINK_TASK
+#define ARDUINO_TASKER_LED_BLINK_TASK
 
 #include <Arduino.h>
 #include <Task.h>
@@ -191,6 +199,7 @@ public:
     ~LedBlinkTask();
     void update(uint32_t deltaT);
 };
+#endif
 ```
 
 ``` C++
@@ -227,6 +236,9 @@ void LedBlinkTask::update(uint32_t deltaT)
 ``` C++
 // CustomTaskPool.h
 
+#ifndef ARDUINO_TASKER_CUSTOM_TASKS_POOL
+#define ARDUINO_TASKER_CUSTOM_TASKS_POOL
+
 #include <Arduino.h>
 #include <TasksPool.h>
 #include <Task.h>
@@ -261,6 +273,7 @@ public:
         return 1;
     }
 };
+#endif
 ```
 
 ``` C++
