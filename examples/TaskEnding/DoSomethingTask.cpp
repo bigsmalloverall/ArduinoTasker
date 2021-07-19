@@ -35,7 +35,7 @@ void DoSomethingTask::update(uint32_t deltaT)
 {
     if (_currentLoop >= 5000)
     {
-        Serial.print("=== DoSomethingTask ===\n5000 loops elapsed, I'm done!");
+        Serial.print("=== DoSomethingTask ===\n5000 loops elapsed, I'm done!\n");
         this->finish(); // Mark task as finished
     }
 

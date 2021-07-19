@@ -79,8 +79,8 @@ namespace ArduinoTasker
             {
                 if (task->getId() == id)
                 {
-                    // delete task;
                     _runningTasks->remove(i);
+                    delete task;
                     return true;
                 }
             }
@@ -125,6 +125,9 @@ namespace ArduinoTasker
             {
                 if (task->isDone())
                 {
+                    Serial.print("Task ");
+                    Serial.print(task->getId());
+                    Serial.println(" about to be deleted!");
                     this->stopTask(task->getId(), i);
                 }
                 else
@@ -199,13 +202,13 @@ namespace ArduinoTasker
         {
             return false;
         }
-        
-        Task * task = _runningTasks->get(pos);
+
+        Task *task = _runningTasks->get(pos);
 
         if (task->getId() == id)
         {
             _runningTasks->remove(pos);
-            //delete task;
+            delete task;
         }
     }
 

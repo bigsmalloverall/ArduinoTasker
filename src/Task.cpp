@@ -6,16 +6,11 @@ namespace ArduinoTasker
     {
         _id = id;
 
-        _status =
-            {0,
-             deleteWhenDone ? (uint8_t)1 : (uint8_t)0};
+        _status = {0, deleteWhenDone ? (uint8_t)1 : (uint8_t)0};
     }
 
     Task::~Task()
     {
-        Serial.print("Task ");
-        Serial.print(_id);
-        Serial.println("deleted!");
     }
 
     uint16_t Task::getId()

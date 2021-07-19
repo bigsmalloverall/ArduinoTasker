@@ -35,7 +35,7 @@ void SerialLoopTask::update(uint32_t deltaT)
 {
     if (_accumulatedDt >= _dt)
     {
-        Serial.println("=== SerialLoopTask===\n1 seconds passed!");
+        Serial.println("=== SerialLoopTask===\n1 seconds passed!\n");
         _accumulatedDt = 0;
     }
 
