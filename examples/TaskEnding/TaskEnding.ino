@@ -72,7 +72,7 @@ void loop()
         uint32_t result = dataTask->getResult();
 
         // Output result
-        Serial.println("Task 2 result: ");
+        Serial.print("Task 2 result: ");
         Serial.println(result);
 
         Serial.println("Task 2 manually stopped and deleted!");

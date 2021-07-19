@@ -11,6 +11,11 @@ namespace ArduinoTasker
 
     Task::~Task()
     {
+#ifdef ARDUINO_TASKER_DEBUG
+        Serial.print("Task ");
+        Serial.print(this->getId());
+        Serial.println(" deleted");
+#endif
     }
 
     uint16_t Task::getId()
@@ -32,11 +37,21 @@ namespace ArduinoTasker
 
     void Task::doNotDelete()
     {
+#ifdef ARDUINO_TASKER_DEBUG
+        Serial.print("Task ");
+        Serial.print(this->getId());
+        Serial.println(" marked as \"Do not delete\"");
+#endif
         _status.deleteWhenDone = 0;
     }
 
     void Task::finish()
     {
+#ifdef ARDUINO_TASKER_DEBUG
+        Serial.print("Task ");
+        Serial.print(this->getId());
+        Serial.println(" is done");
+#endif
         _status.isDone = 1;
     }
 

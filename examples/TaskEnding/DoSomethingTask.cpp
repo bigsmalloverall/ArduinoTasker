@@ -27,7 +27,8 @@ DoSomethingTask::DoSomethingTask(uint16_t id) : ArduinoTasker::Task(id)
     }
 }
 
-DoSomethingTask::~DoSomethingTask() {
+DoSomethingTask::~DoSomethingTask()
+{
     Serial.print("Task ");
     Serial.print(this->getId());
     Serial.println(" deleted");
@@ -37,7 +38,10 @@ void DoSomethingTask::update(uint32_t deltaT)
 {
     if (_currentLoop >= 5000)
     {
-        Serial.print("=== DoSomethingTask ===\n5000 loops elapsed, I'm done!\n");
+        Serial.print("Task ");
+        Serial.print(this->getId());
+        Serial.println(" - 5000 loops elapsed, I'm done!");
+
         this->finish(); // Mark task as finished
     }
 

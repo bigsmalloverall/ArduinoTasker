@@ -35,19 +35,37 @@ namespace ArduinoTasker
             }
         }
 
+#ifdef ARDUINO_TASKER_DEBUG
+        Serial.print("TaskManager fetched task with id: ");
+        Serial.println(id);
+#endif
+
         return _tasksPool->tasks(id);
     }
 
     bool TaskManager::startTask(uint16_t id, bool wrapId)
     {
+#ifdef ARDUINO_TASKER_DEBUG
+        Serial.print("TaskManager Starting task with id: ");
+        Serial.print(id);
+        Serial.print("\t id wrapping: ");
+        Serial.println(wrapId);
+#endif
+
         Task *task = this->fetch(id, wrapId);
         return this->startTaskByPointer(task);
     }
 
     bool TaskManager::startTaskByPointer(Task *task)
     {
+
         if (task != nullptr)
         {
+#ifdef ARDUINO_TASKER_DEBUG
+            Serial.print("TaskManager Starting task:  ");
+            Serial.print(task->getId());
+            Serial.println("by pointer");
+#endif
             _runningTasks->add(task);
             return true;
         }
@@ -57,6 +75,9 @@ namespace ArduinoTasker
 
     void TaskManager::startAllTasks()
     {
+#ifdef ARDUINO_TASKER_DEBUG
+        Serial.println("TaskManager Starting all tasks");
+#endif
         if (_tasksPool != nullptr)
         {
             for (uint16_t i = 0; i < _tasksPool->count(); i++)
@@ -68,6 +89,10 @@ namespace ArduinoTasker
 
     bool TaskManager::stopTask(uint16_t id)
     {
+#ifdef ARDUINO_TASKER_DEBUG
+        Serial.print("TaskManager Stopping task: ");
+        Serial.println(id);
+#endif
         Task *task = nullptr;
 
         for (uint16_t i = 0; i < (uint16_t)_runningTasks->size(); i++)
@@ -78,6 +103,11 @@ namespace ArduinoTasker
             {
                 if (task->getId() == id)
                 {
+#ifdef ARDUINO_TASKER_DEBUG
+                    Serial.print("TaskManager Task ");
+                    Serial.print(task->getId());
+                    Serial.println(" about to be deleted!");
+#endif
                     _runningTasks->remove(i);
                     delete task;
                     return true;
@@ -85,6 +115,11 @@ namespace ArduinoTasker
             }
             else
             {
+#ifdef ARDUINO_TASKER_DEBUG
+                Serial.print("TaskManager Task: ");
+                Serial.print(id);
+                Serial.println(" marked as \" Do not delete \"");
+#endif
                 return false;
             }
         }
@@ -94,6 +129,9 @@ namespace ArduinoTasker
 
     void TaskManager::stopAllTasks()
     {
+#ifdef ARDUINO_TASKER_DEBUG
+        Serial.print("TaskManager Stopping all tasks");
+#endif
         Task *task = nullptr;
 
         for (uint16_t i = 0; i < (uint16_t)_runningTasks->size(); i++)
@@ -124,9 +162,11 @@ namespace ArduinoTasker
             {
                 if (task->isDone())
                 {
-                    Serial.print("Task ");
+#ifdef ARDUINO_TASKER_DEBUG
+                    Serial.print("TaskManager Task ");
                     Serial.print(task->getId());
                     Serial.println(" about to be deleted!");
+#endif
                     this->stopTask(task->getId(), i);
                 }
                 else
