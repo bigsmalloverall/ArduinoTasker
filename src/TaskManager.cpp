@@ -179,7 +179,7 @@ namespace ArduinoTasker
         }
     }
 
-    void TaskManager::setTasksPool(TasksPool *tasksPool)
+    void TaskManager::setTasksPool(TasksPool *tasksPool, bool clean)
     {
         _tasksPool = tasksPool;
     }
