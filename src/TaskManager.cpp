@@ -2,7 +2,6 @@
 
 namespace ArduinoTasker
 {
-
     TaskManager::TaskManager(TasksPool *tasksPool)
     {
         _tasksPool = tasksPool;

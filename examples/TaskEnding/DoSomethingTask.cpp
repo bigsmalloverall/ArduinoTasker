@@ -28,7 +28,9 @@ DoSomethingTask::DoSomethingTask(uint16_t id) : ArduinoTasker::Task(id)
 }
 
 DoSomethingTask::~DoSomethingTask() {
-    Serial.print("\n===DoSomethingTask deleted===\n");
+    Serial.print("Task ");
+    Serial.print(this->getId());
+    Serial.println(" deleted");
 }
 
 void DoSomethingTask::update(uint32_t deltaT)

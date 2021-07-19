@@ -60,8 +60,8 @@ void loop()
     {
         // If task does not exist this function will do nothing
         // so if this if is triggered again nothing would happen
-        manager.stopTask(1);
         Serial.println("Task 1 manually stopped!");
+        manager.stopTask(1);
     }
     
     // Task 2
@@ -75,6 +75,7 @@ void loop()
         Serial.println("Task 2 result: ");
         Serial.println(result);
 
+        Serial.println("Task 2 manually stopped and deleted!");
         // Cleanup
         // This is important!
         manager.removeTaskFromRunningTasks(2);

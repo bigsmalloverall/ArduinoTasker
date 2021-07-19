@@ -19,16 +19,14 @@
 
 SerialLoopTask::SerialLoopTask(uint16_t id) : ArduinoTasker::Task(id)
 {
-    // Making sure that serial is working
-    if (!Serial)
-    {
-        Serial.begin(9600);
-    }
+
 }
 
 SerialLoopTask::~SerialLoopTask()
 {
-    Serial.print("\n===SerialLoopTask deleted===\n");
+    Serial.print("Task ");
+    Serial.print(this->getId());
+    Serial.println(" deleted");
 }
 
 void SerialLoopTask::update(uint32_t deltaT)
