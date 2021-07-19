@@ -1,12 +1,12 @@
 /*
-* Task Ending example for Arduino Tasker
+* Task Ending example for Simple Task Manager
 * 
 * Header file declaring all needed variables and functions.
 * 
 * by Jakub Wójcik 2021
 * jakub.wojcik2017@gmail.com
 * 
-* https://github.com/bigsmalloverall/ArduinoTasker
+* https://github.com/bigsmalloverall/SimpleTaskManager
 */
 
 #ifndef ARDUINO_TASKER_CACHE_DATA_TASK
@@ -15,7 +15,7 @@
 #include <Arduino.h>
 #include <Task.h>
 
-class CacheDataTask : public ArduinoTasker::Task
+class CacheDataTask : public SimpleTM::Task
 {
 private:
     // This is place for cache to be placed

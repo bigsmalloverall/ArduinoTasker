@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <Status.h>
 
-namespace ArduinoTasker
+namespace SimpleTM
 {
     class Task
     {
@@ -72,6 +72,6 @@ namespace ArduinoTasker
         uint32_t _lastUpdate{0};
     };
 
-} // namespace ArduinoTasker
+} // namespace SimpleTM
 
 #endif

@@ -1,19 +1,19 @@
-#include "TaskManager.h"
+#include "SimpleTaskManager.h"
 
-namespace ArduinoTasker
+namespace SimpleTM
 {
-    TaskManager::TaskManager(TasksPool *tasksPool)
+    SimpleTaskManager::SimpleTaskManager(TasksPool *tasksPool)
     {
         _tasksPool = tasksPool;
         _runningTasks = new LinkedList<Task *>();
     }
 
-    TaskManager::TaskManager()
+    SimpleTaskManager::SimpleTaskManager()
     {
         _runningTasks = new LinkedList<Task *>();
     }
 
-    TaskManager::~TaskManager()
+    SimpleTaskManager::~SimpleTaskManager()
     {
         if (_runningTasks != nullptr)
         {
@@ -21,7 +21,7 @@ namespace ArduinoTasker
         }
     }
 
-    Task *TaskManager::fetch(uint16_t id, bool wrapId)
+    Task *SimpleTaskManager::fetch(uint16_t id, bool wrapId)
     {
         if (wrapId)
         {
@@ -36,17 +36,17 @@ namespace ArduinoTasker
         }
 
 #ifdef ARDUINO_TASKER_DEBUG
-        Serial.print("TaskManager fetched task with id: ");
+        Serial.print("SimpleTaskManager fetched task with id: ");
         Serial.println(id);
 #endif
 
         return _tasksPool->tasks(id);
     }
 
-    bool TaskManager::startTask(uint16_t id, bool wrapId)
+    bool SimpleTaskManager::startTask(uint16_t id, bool wrapId)
     {
 #ifdef ARDUINO_TASKER_DEBUG
-        Serial.print("TaskManager Starting task with id: ");
+        Serial.print("SimpleTaskManager Starting task with id: ");
         Serial.print(id);
         Serial.print("\t id wrapping: ");
         Serial.println(wrapId);
@@ -56,13 +56,13 @@ namespace ArduinoTasker
         return this->startTaskByPointer(task);
     }
 
-    bool TaskManager::startTaskByPointer(Task *task)
+    bool SimpleTaskManager::startTaskByPointer(Task *task)
     {
 
         if (task != nullptr)
         {
 #ifdef ARDUINO_TASKER_DEBUG
-            Serial.print("TaskManager Starting task:  ");
+            Serial.print("SimpleTaskManager Starting task:  ");
             Serial.print(task->getId());
             Serial.println("by pointer");
 #endif
@@ -73,10 +73,10 @@ namespace ArduinoTasker
         return false;
     }
 
-    void TaskManager::startAllTasks()
+    void SimpleTaskManager::startAllTasks()
     {
 #ifdef ARDUINO_TASKER_DEBUG
-        Serial.println("TaskManager Starting all tasks");
+        Serial.println("SimpleTaskManager Starting all tasks");
 #endif
         if (_tasksPool != nullptr)
         {
@@ -87,10 +87,10 @@ namespace ArduinoTasker
         }
     }
 
-    bool TaskManager::stopTask(uint16_t id)
+    bool SimpleTaskManager::stopTask(uint16_t id)
     {
 #ifdef ARDUINO_TASKER_DEBUG
-        Serial.print("TaskManager Stopping task: ");
+        Serial.print("SimpleTaskManager Stopping task: ");
         Serial.println(id);
 #endif
         Task *task = nullptr;
@@ -104,7 +104,7 @@ namespace ArduinoTasker
                 if (task->getId() == id)
                 {
 #ifdef ARDUINO_TASKER_DEBUG
-                    Serial.print("TaskManager Task ");
+                    Serial.print("SimpleTaskManager Task ");
                     Serial.print(task->getId());
                     Serial.println(" about to be deleted!");
 #endif
@@ -116,7 +116,7 @@ namespace ArduinoTasker
             else
             {
 #ifdef ARDUINO_TASKER_DEBUG
-                Serial.print("TaskManager Task: ");
+                Serial.print("SimpleTaskManager Task: ");
                 Serial.print(id);
                 Serial.println(" marked as \" Do not delete \"");
 #endif
@@ -127,10 +127,10 @@ namespace ArduinoTasker
         return false;
     }
 
-    void TaskManager::stopAllTasks()
+    void SimpleTaskManager::stopAllTasks()
     {
 #ifdef ARDUINO_TASKER_DEBUG
-        Serial.print("TaskManager Stopping all tasks");
+        Serial.print("SimpleTaskManager Stopping all tasks");
 #endif
         Task *task = nullptr;
 
@@ -145,12 +145,12 @@ namespace ArduinoTasker
         }
     }
 
-    uint32_t TaskManager::getDelta(Task *task)
+    uint32_t SimpleTaskManager::getDelta(Task *task)
     {
         return (uint32_t)micros() - task->getLastUpdateTime();
     }
 
-    void TaskManager::update()
+    void SimpleTaskManager::update()
     {
         Task *task = nullptr;
 
@@ -163,7 +163,7 @@ namespace ArduinoTasker
                 if (task->isDone())
                 {
 #ifdef ARDUINO_TASKER_DEBUG
-                    Serial.print("TaskManager Task ");
+                    Serial.print("SimpleTaskManager Task ");
                     Serial.print(task->getId());
                     Serial.println(" about to be deleted!");
 #endif
@@ -179,30 +179,30 @@ namespace ArduinoTasker
         }
     }
 
-    void TaskManager::setTasksPool(TasksPool *tasksPool, bool clean)
+    void SimpleTaskManager::setTasksPool(TasksPool *tasksPool)
     {
         _tasksPool = tasksPool;
     }
 
-    bool TaskManager::isTaskDone(uint16_t id)
+    bool SimpleTaskManager::isTaskDone(uint16_t id)
     {
         Task *task = this->getTask(id);
         return (task == nullptr ? true : task->isDone());
     }
 
-    bool TaskManager::isTaskRunning(uint16_t id)
+    bool SimpleTaskManager::isTaskRunning(uint16_t id)
     {
         Task *task = this->getTask(id);
         return (task == nullptr ? false : !task->isDone());
     }
 
-    bool TaskManager::doesTaskExist(uint16_t id)
+    bool SimpleTaskManager::doesTaskExist(uint16_t id)
     {
         Task *task = this->getTask(id);
         return task != nullptr;
     }
 
-    Task *TaskManager::getTask(uint16_t id)
+    Task *SimpleTaskManager::getTask(uint16_t id)
     {
         Task *task = nullptr;
 
@@ -219,7 +219,7 @@ namespace ArduinoTasker
         return nullptr;
     }
 
-    void TaskManager::removeTaskFromRunningTasks(uint16_t id)
+    void SimpleTaskManager::removeTaskFromRunningTasks(uint16_t id)
     {
         Task *task = nullptr;
 
@@ -235,7 +235,7 @@ namespace ArduinoTasker
         }
     }
 
-    bool TaskManager::stopTask(uint16_t id, uint16_t pos)
+    bool SimpleTaskManager::stopTask(uint16_t id, uint16_t pos)
     {
         if (pos >= _runningTasks->size())
         {
@@ -251,4 +251,4 @@ namespace ArduinoTasker
         }
     }
 
-} // namespace ArduinoTasker
+} // namespace SimpleTM

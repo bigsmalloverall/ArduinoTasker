@@ -1,5 +1,5 @@
 /*
-* Task Ending example for Arduino Tasker
+* Task Ending example for Simple Task Manager
 * 
 * This file implements all declared functions from CalculateDataTask.h
 * 
@@ -12,7 +12,7 @@
 * by Jakub Wójcik 2021
 * jakub.wojcik2017@gmail.com
 * 
-* https://github.com/bigsmalloverall/ArduinoTasker
+* https://github.com/bigsmalloverall/SimpleTaskManager
 */
 
 #include <Arduino.h>
@@ -22,7 +22,7 @@
 CalculateDataTask::CalculateDataTask(uint16_t id) : Task(id)
 {
     // This marks task as "Do not delete"
-    // TaskManager will not delete this task from memory
+    // SimpleTaskManager will not delete this task from memory
     this->doNotDelete();
 }
 

@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include "Task.h"
 
-namespace ArduinoTasker
+namespace SimpleTM
 {
     class TasksPool {
         public:
@@ -23,6 +23,6 @@ namespace ArduinoTasker
 
     };
     
-} // namespace ArduinoTasker
+} // namespace SimpleTM
 
 #endif

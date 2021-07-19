@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-namespace ArduinoTasker
+namespace SimpleTM
 {
     struct Status
     {
@@ -11,7 +11,7 @@ namespace ArduinoTasker
         uint8_t deleteWhenDone : 1;
     };
     
-} // namespace ArduinoTasker
+} // namespace SimpleTM
 
 
 #endif

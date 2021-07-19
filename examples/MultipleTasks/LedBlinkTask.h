@@ -1,12 +1,12 @@
 /*
-* Multiple tasks example for Arduino Tasker
+* Multiple tasks example for Simple Task Manager
 * 
 * Header file declaring all needed variables and functions.
 * 
 * by Jakub Wójcik 2021
 * jakub.wojcik2017@gmail.com
 * 
-* https://github.com/bigsmalloverall/ArduinoTasker
+* https://github.com/bigsmalloverall/SimpleTaskManager
 */
 
 #ifndef ARDUINO_TASKER_LED_BLINK_TASK
@@ -15,7 +15,7 @@
 #include <Arduino.h>
 #include <Task.h>
 
-class LedBlinkTask : public ArduinoTasker::Task
+class LedBlinkTask : public SimpleTM::Task
 {
 private:
     // Internal state holders:

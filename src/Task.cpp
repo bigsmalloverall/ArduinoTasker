@@ -1,6 +1,6 @@
 #include "Task.h"
 
-namespace ArduinoTasker
+namespace SimpleTM
 {
     Task::Task(uint16_t id, bool deleteWhenDone)
     {
@@ -69,4 +69,4 @@ namespace ArduinoTasker
     {
     }
 
-} // namespace ArduinoTasker
+} // namespace SimpleTM

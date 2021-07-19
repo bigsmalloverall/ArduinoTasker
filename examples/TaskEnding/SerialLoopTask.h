@@ -1,12 +1,12 @@
 /*
-* Task Ending example for Arduino Tasker
+* Task Ending example for Simple Task Manager
 * 
 * Header file declaring all needed variables and functions.
 * 
 * by Jakub Wójcik 2021
 * jakub.wojcik2017@gmail.com
 * 
-* https://github.com/bigsmalloverall/ArduinoTasker
+* https://github.com/bigsmalloverall/SimpleTaskManager
 */
 
 #ifndef ARDUINO_TASKER_SERIAL_LOOP_TASK
@@ -15,7 +15,7 @@
 #include <Arduino.h>
 #include <Task.h>
 
-class SerialLoopTask : public ArduinoTasker::Task
+class SerialLoopTask : public SimpleTM::Task
 {
 private:
 

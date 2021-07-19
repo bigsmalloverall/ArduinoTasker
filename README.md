@@ -1,13 +1,13 @@
-# Arduino Tasker
+# Simple Task Manager
 
-Arduino Tasker is a simple framework for creating task based code. The goal is to never use delay() so many tasks can run "concurrently" and to be able to neatly segregate your code features. It is designed to run on devices with limited memory like Arduino Uno. It loosely bases operation workflow on RTOS (Real Time Operating System) in that you can time tasks in semi predictable intervals. 
+Simple Task Manager is a simple framework for creating task based code. The goal is to never use delay() so many tasks can run "concurrently" and to be able to neatly segregate your code features. It is designed to run on devices with limited memory like Arduino Uno. It loosely bases operation workflow on RTOS (Real Time Operating System) in that you can time tasks in semi predictable intervals. 
 
 [Consider giving me a buck!](https://www.paypal.com/donate?hosted_button_id=4U6UWETUNPX4C&source=url)
 
-- [Arduino Tasker](#arduino-tasker)
+- [Simple Task Manager](#simple-task-manager)
 - [How to use](#how-to-use)
   - [Task definition](#task-definition)
-  - [TaskManager](#taskmanager)
+  - [SimpleTaskManager](#simpletaskmanager)
   - [TasksPool](#taskspool)
     - [TasksPool alternate binding](#taskspool-alternate-binding)
   - [Manually adding tasks](#manually-adding-tasks)
@@ -20,7 +20,7 @@ Arduino Tasker is a simple framework for creating task based code. The goal is t
 See *examples/* for in depth explanations
 
 ## Task definition
-Every task needs to be defined by you as **child** class of **Task class** which lives inside **ArduinoTasker** namespace. It **requires update** function and to **task id** parameter. There is also cache function that is called before update, but it is optional (*examples/TaskCache*). Everything else is up to you.
+Every task needs to be defined by you as **child** class of **Task class** which lives inside **SimpleTM** namespace. It **requires update** function and to **task id** parameter. There is also cache function that is called before update, but it is optional (*examples/TaskCache*). Everything else is up to you.
 
 **Make sure every instance of your tasks have unique ids!**
 
@@ -34,7 +34,7 @@ Every task needs to be defined by you as **child** class of **Task class** which
 #include <Arduino.h>
 #include <Task.h>
 
-class SomeTask : public ArduinoTasker::Task
+class SomeTask : public SimpleTM::Task
 {
 private:
     bool _variable{false};
@@ -55,7 +55,7 @@ public:
 #include "SomeTask.h"
 
 // Task id passed to Task constructor
-SomeTask::SomeTask(uint16_t id, uint8_t variable) : Task(id)
+SomeTask::SomeTask(uint16_t id, uint8_t variable) : SimpleTM::Task(id)
 {
     _variable = variable;
 }
@@ -68,8 +68,8 @@ void SomeTask::update(uint32_t deltaT)
 
 The task definition looks very similar to main Arduino loop. Constructor is like ```void setup()``` and  ```void update(...)``` is like ``` void loop()```.
 
-## TaskManager
-This library allows you to create many tasks templates that are loaded in to memory only when they are running (or needed). It achieves that with TaskManager, which is imitates **simple** operating system. Manager fetches Tasks from user defined TasksPool, which is collection of templates for Tasks or accepts pointers to tasks. **Be careful wit that! See *examples/TaskEnding*)**.
+## SimpleTaskManager
+This library allows you to create many tasks templates that are loaded in to memory only when they are running (or needed). It achieves that with SimpleTaskManager, which is imitates **simple** operating system. Manager fetches Tasks from user defined TasksPool, which is collection of templates for Tasks or accepts pointers to tasks. **Be careful wit that! See *examples/TaskEnding*)**.
 
 ``` C++
 // Pseudo code
@@ -78,11 +78,11 @@ This library allows you to create many tasks templates that are loaded in to mem
 #include <TasksManager.h>
 #include "YourTasksPool.h"
 
-ArduinoTasker::TaskManager *manager;
+SimpleTM::SimpleTaskManager *manager;
 
 void setup()
 {
-    manager = new ArduinoTasker::TaskManager(new YourTasksPool());
+    manager = new SimpleTM::SimpleTaskManager(new YourTasksPool());
     manager->startTask(0); // Loads task with id 0 to memory and runs it
     manager->startAllTasks(); // Loads all tasks from TasksPool to memory and runs them 
 }
@@ -108,10 +108,10 @@ As mentioned before. TasksPool is collection of class templates. It’s main pur
 #include <Task.h>
 #include "SomeTask.h"
 
-class YourTasksPool : public ArduinoTasker::TasksPool
+class YourTasksPool : public SimpleTM::TasksPool
 {
 public:
-    ArduinoTasker::Task *tasks(uint16_t id)
+    SimpleTM::Task *tasks(uint16_t id)
     {
         switch (id)
         {
@@ -122,7 +122,7 @@ public:
 
             default:
                 // If id is invalid return nullptr
-                // TaskManager function startTask() will return false
+                // SimpleTaskManager function startTask() will return false
                 // meaning the task failed to start.
                 // It can also be a default task.
                 return nullptr;
@@ -140,7 +140,7 @@ public:
 ```
 
 ### TasksPool alternate binding
-Task pool can also be added after TaskManager instantiation, at any point during runtime. Running tasks will not be affected. TaskManager frees taskPool pointer when it's destructed. **Changing TasksPools multiple times during runtime is not advised. This feature is under development. There should bo not TasksPool or only one.**
+Task pool can also be added after SimpleTaskManager instantiation, at any point during runtime. Running tasks will not be affected. SimpleTaskManager frees taskPool pointer when it's destructed. **Changing TasksPools multiple times during runtime is not advised. This feature is under development. There should bo not TasksPool or only one.**
 
 ``` C++
 // Pseudo code
@@ -149,7 +149,7 @@ Task pool can also be added after TaskManager instantiation, at any point during
 #include <TasksManager.h>
 #include "YourTasksPool.h"
 
-ArduinoTasker::TaskManager manager;
+SimpleTM::SimpleTaskManager manager;
 
 void setup()
 {
@@ -174,7 +174,7 @@ Tasks can also be added manually. Make sure there are no external pointers to th
 #include <TasksManager.h>
 #include "SomeTask.h"
 
-ArduinoTasker::TaskManager manager;
+SimpleTM::SimpleTaskManager manager;
 
 void setup()
 {
@@ -190,7 +190,7 @@ void setup()
 ```
 
 ## Stopping tasks
-Tasks are automatically stopped by TaskManager in next update after isDone flag is set by ```finish()``` function.
+Tasks are automatically stopped by SimpleTaskManager in next update after isDone flag is set by ```finish()``` function.
 
 ``` C++
 // Pseudo code
@@ -210,7 +210,7 @@ void SomeTask::update(uint32_t deltaT)
     // Some condition ...
 
     // Sets isDone flag to true
-    // TaskManager will no longer cache or update this task
+    // SimpleTaskManager will no longer cache or update this task
     // This task will be deleted on next global update
     this->finish();
 }
@@ -225,7 +225,7 @@ Some tasks run indefinitely and it is needed to stop them by some external trigg
 #include <TasksManager.h>
 #include "SomeInfiniteTask.h"
 
-ArduinoTasker::TaskManager manager;
+SimpleTM::SimpleTaskManager manager;
 
 void setup()
 {
@@ -259,7 +259,7 @@ Sometimes it is needed to operate on results from finished task. I can be done b
 SomeTaskWithData::SomeTaskWithData(uint16_t id) : Task(id)
 {
     // This marks task as "Do not delete"
-    // TaskManager will not delete this task from memory
+    // SimpleTaskManager will not delete this task from memory
     this->doNotDelete();
 }
 
@@ -268,7 +268,7 @@ void SomeTaskWithData::update(uint32_t deltaT)
     // Some end condition ...
 
     // Sets isDone flag to true
-    // TaskManager will no longer cache or update this task
+    // SimpleTaskManager will no longer cache or update this task
     this->finish();
 }
 
@@ -286,7 +286,7 @@ uint32 SomeTaskWithData::getData()
 #include <TasksManager.h>
 #include "SomeTaskWithData.h"
 
-ArduinoTasker::TaskManager manager;
+SimpleTM::SimpleTaskManager manager;
 
 SomeTaskWithData * pTaskWithData = nullptr;
 

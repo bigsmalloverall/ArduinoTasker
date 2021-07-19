@@ -1,5 +1,5 @@
 /*
-* Task Ending example for Arduino Tasker
+* Task Ending example for Simple Task Manager
 * 
 * This file implements all declared functions from CacheDataTask.h
 * 
@@ -14,7 +14,7 @@
 * by Jakub Wójcik 2021
 * jakub.wojcik2017@gmail.com
 * 
-* https://github.com/bigsmalloverall/ArduinoTasker
+* https://github.com/bigsmalloverall/SimpleTaskManager
 */
 
 #include <Arduino.h>

@@ -1,23 +1,23 @@
 /*
-* Task Ending example for Arduino Tasker
+* Task Ending example for Simple Task Manager
 * 
 * This example shows different ways to end tasks.
 * 
 * by Jakub Wójcik 2021
 * jakub.wojcik2017@gmail.com
 * 
-* https://github.com/bigsmalloverall/ArduinoTasker
+* https://github.com/bigsmalloverall/SimpleTaskManager
 */
 
 #include <Arduino.h>
-#include <TaskManager.h>
+#include <SimpleTaskManager.h>
 #include "DoSomethingTask.h"
 #include "SerialLoopTask.h"
 #include "CalculateDataTask.h"
 
-using namespace ArduinoTasker;
+using namespace SimpleTM;
 
-TaskManager manager;
+SimpleTaskManager manager;
 
 // Global pointer to Task 2 initialised as nullptr
 CalculateDataTask *dataTask = nullptr;
@@ -30,7 +30,7 @@ void setup()
     Serial.println("init");
 
     // Task 0
-    // This task will finnish after 5000 loops. TaskManager will delete it form memory.
+    // This task will finnish after 5000 loops. SimpleTaskManager will delete it form memory.
     manager.startTaskByPointer(new DoSomethingTask(0));
     Serial.println("Task 0 started!");
 
@@ -67,7 +67,7 @@ void loop()
     
     // Task 2
     // Enter if statement only if Task 2 still exists and is done
-    // Internal state is still managed by TaskManager, but we can access task directly
+    // Internal state is still managed by SimpleTaskManager, but we can access task directly
     if (dataTask != nullptr && dataTask->isDone())
     {
         uint32_t result = dataTask->getResult();

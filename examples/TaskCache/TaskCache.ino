@@ -1,21 +1,21 @@
 /*
-* Task Caching example for Arduino Tasker
+* Task Caching example for Simple Task Manager
 * 
 * This example shows how cache() function can be used inside task
 * 
 * by Jakub Wójcik 2021
 * jakub.wojcik2017@gmail.com
 * 
-* https://github.com/bigsmalloverall/ArduinoTasker
+* https://github.com/bigsmalloverall/SimpleTaskManager
 */
 
 #include <Arduino.h>
-#include <TaskManager.h>
+#include <SimpleTaskManager.h>
 #include "CacheDataTask.h"
 
-using namespace ArduinoTasker;
+using namespace SimpleTM;
 
-TaskManager manager;
+SimpleTaskManager manager;
 
 void setup()
 {

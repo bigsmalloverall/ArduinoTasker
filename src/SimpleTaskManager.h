@@ -6,14 +6,14 @@
 #include "Task.h"
 #include "TasksPool.h"
 
-namespace ArduinoTasker
+namespace SimpleTM
 {
-    class TaskManager
+    class SimpleTaskManager
     {
     public:
-        TaskManager(TasksPool *tasksPool);
-        TaskManager();
-        ~TaskManager();
+        SimpleTaskManager(TasksPool *tasksPool);
+        SimpleTaskManager();
+        ~SimpleTaskManager();
 
         /**
          * @brief  Fetches task from TasksPool
@@ -117,6 +117,6 @@ namespace ArduinoTasker
         bool stopTask(uint16_t id, uint16_t pos);
     };
 
-} // namespace ArduinoTasker
+} // namespace SimpleTM
 
 #endif

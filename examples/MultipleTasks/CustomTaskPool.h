@@ -1,5 +1,5 @@
 /*
-* Multiple tasks example for Arduino Tasker
+* Multiple tasks example for Simple Task Manager
 * 
 * TasksPool is collection of class templates. 
 * It’s main function is to easily iterate through your task and load them to memory only when they are needed.
@@ -9,7 +9,7 @@
 * by Jakub Wójcik 2021
 * jakub.wojcik2017@gmail.com
 * 
-* https://github.com/bigsmalloverall/ArduinoTasker
+* https://github.com/bigsmalloverall/SimpleTaskManager
 */
 
 #ifndef ARDUINO_TASKER_CUSTOM_TASKS_POOL
@@ -24,10 +24,10 @@
 extern const uint8_t ledPin;
 extern const uint8_t ledPin2;
 
-class CustomTaskPool : public ArduinoTasker::TasksPool
+class CustomTaskPool : public SimpleTM::TasksPool
 {
 public:
-    ArduinoTasker::Task *tasks(uint16_t id)
+    SimpleTM::Task *tasks(uint16_t id)
     {   
         // Make sure the ids are unique!
         switch (id)
@@ -50,7 +50,7 @@ public:
 
             default:
                 // If id is invalid return nullptr
-                // TaskManager function startTask() will return false
+                // SimpleTaskManager function startTask() will return false
                 // meaning the task failed to start.
                 // It can also be a default task.
                 return nullptr;
