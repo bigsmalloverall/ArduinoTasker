@@ -18,7 +18,9 @@
 class CacheDataTask : public ArduinoTasker::Task
 {
 private:
-    uint8_t _lottoCodes[6]; // This is place for cache to be placed
+    // This is place for cache to be placed
+    // default value [0, ...]
+    uint8_t _lottoCodes[6] {0, 0, 0, 0, 0, 0};
 
 public:
     CacheDataTask(uint16_t id);

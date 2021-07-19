@@ -61,7 +61,7 @@ namespace ArduinoTasker
         /**
          * @brief  Allows to cache in memory all necessary calculations before update if CPU has enough RAM. It is useful if sending the data is time sensitive.
          */
-        void cache();
+        virtual void cache();
 
         // Saves millis() to _lastUpdate
         void endUpdate();

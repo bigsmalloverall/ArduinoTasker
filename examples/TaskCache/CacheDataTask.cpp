@@ -28,12 +28,22 @@ CacheDataTask::CacheDataTask(uint16_t id) : Task(id)
 void CacheDataTask::update(uint32_t deltaT)
 {
     // Update just sends cached data
-    
+
     Serial.print("New lotto code: ");
 
     for (uint8_t i = 0; i < 6; i++)
     {
+        Serial.print("(");
         Serial.print(_lottoCodes[i]);
+
+        if (i < 5)
+        {
+            Serial.print("), ");
+        }
+        else
+        {
+            Serial.print(")");
+        }
     }
 
     Serial.println();
@@ -46,7 +56,9 @@ void CacheDataTask::cache()
     {
         // Delay simulates hard to calculate task
         // In real usecase it is strongly advised to never use delay()!
-        delay(500);
-        _lottoCodes[i] = random(1, 49);
+        delay(250);
+        _lottoCodes[i] = (uint8_t)random(1, 49);
     }
+
+    randomSeed(analogRead(0)); 
 }
