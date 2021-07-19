@@ -19,7 +19,7 @@ class SerialLoopTask : public ArduinoTasker::Task
 {
 private:
 
-    uint32_t _dt {100000}; // print after one second
+    uint32_t _dt {1000000}; // print after 5 seconds (time in us)
     uint32_t _accumulatedDt{0}; 
 
 public:

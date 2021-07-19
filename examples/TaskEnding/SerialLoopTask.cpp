@@ -28,14 +28,14 @@ SerialLoopTask::SerialLoopTask(uint16_t id) : ArduinoTasker::Task(id)
 
 SerialLoopTask::~SerialLoopTask()
 {
-    Serial.print("SerialLoopTask deleted");
+    Serial.print("\n===SerialLoopTask deleted===\n");
 }
 
 void SerialLoopTask::update(uint32_t deltaT)
 {
     if (_accumulatedDt >= _dt)
     {
-        Serial.println("=== SerialLoopTask===\nOne second passed!");
+        Serial.println("=== SerialLoopTask===\n1 seconds passed!");
         _accumulatedDt = 0;
     }
 

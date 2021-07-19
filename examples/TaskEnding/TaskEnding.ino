@@ -78,6 +78,6 @@ void loop()
         // Cleanup
         // This is important!
         manager.stopTask(2);
-        // dataTask = nullptr;
+        //dataTask = nullptr;
     }
 }

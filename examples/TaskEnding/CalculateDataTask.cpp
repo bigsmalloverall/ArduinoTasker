@@ -28,7 +28,7 @@ CalculateDataTask::CalculateDataTask(uint16_t id) : Task(id)
 
 CalculateDataTask::~CalculateDataTask()
 {
-    Serial.print("CalculateDataTask deleted");
+    Serial.print("\n===CalculateDataTask deleted===\n");
 }
 
 void CalculateDataTask::update(uint32_t deltaT)
