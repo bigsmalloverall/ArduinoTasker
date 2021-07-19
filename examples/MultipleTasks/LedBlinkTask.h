@@ -1,5 +1,5 @@
 /*
-* Blink example for Arduino Tasker
+* Multiple tasks example for Arduino Tasker
 * 
 * Header file declaring all needed variables and functions.
 * 

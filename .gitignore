@@ -33,3 +33,5 @@
 
 # Editors config
 .idea/
+.pio/
+.vscode/

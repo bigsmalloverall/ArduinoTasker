@@ -1,5 +1,5 @@
 /*
-* BliMultiple tasksnk example for Arduino Tasker
+* Task Ending example for Arduino Tasker
 * 
 * Header file declaring all needed variables and functions.
 * 
@@ -9,21 +9,20 @@
 * https://github.com/bigsmalloverall/ArduinoTasker
 */
 
-#ifndef ARDUINO_TASKER_SERIAL_LOOP_TASK
-#define ARDUINO_TASKER_SERIAL_LOOP_TASK
+#ifndef ARDUINO_TASKER_DO_SOMETHING_TASK
+#define ARDUINO_TASKER_DO_SOMETHING_TASK
 
 #include <Arduino.h>
 #include <Task.h>
 
-class SerialLoopTask : public ArduinoTasker::Task
+class DoSomethingTask : public ArduinoTasker::Task
 {
 private:
-
-    uint32_t _loops {100000}; // how many loops to do before serial print
     uint32_t _currentLoop {0}; 
 
 public:
-    SerialLoopTask(uint16_t id);
+    DoSomethingTask(uint16_t id);
+    ~DoSomethingTask();
 
     // Update is called every loop from main.cpp
     // deltaT is time in us from last time update() was called

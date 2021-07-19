@@ -1,5 +1,5 @@
 /*
-* Blink example for Arduino Tasker
+* Multiple tasks example for Arduino Tasker
 * 
 * TasksPool is collection of class templates. 
 * It’s main function is to easily iterate through your task and load them to memory only when they are needed.

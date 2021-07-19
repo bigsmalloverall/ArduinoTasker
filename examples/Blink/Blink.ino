@@ -25,10 +25,6 @@ TaskManager *manager;
 void setup()
 {
     Serial.begin(9600);
-    Serial.begin(9600);
-    delay(1000);
-    
-    Serial.println("init");
     manager = new TaskManager(new CustomTaskPool());
     manager->startTask(0);
 }

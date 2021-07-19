@@ -1,5 +1,5 @@
 /*
-* BliMultiple tasksnk example for Arduino Tasker
+* Task Ending example for Arduino Tasker
 * 
 * Header file declaring all needed variables and functions.
 * 
@@ -19,11 +19,12 @@ class SerialLoopTask : public ArduinoTasker::Task
 {
 private:
 
-    uint32_t _loops {100000}; // how many loops to do before serial print
-    uint32_t _currentLoop {0}; 
+    uint32_t _dt {100000}; // print after one second
+    uint32_t _accumulatedDt{0}; 
 
 public:
     SerialLoopTask(uint16_t id);
+    ~SerialLoopTask();
 
     // Update is called every loop from main.cpp
     // deltaT is time in us from last time update() was called

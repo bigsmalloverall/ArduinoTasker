@@ -1,5 +1,5 @@
 /*
-* Multiple tasks example for Arduino Tasker
+* Task Ending example for Arduino Tasker
 * 
 * This file implements all declared functions from SerialLoopTask.h
 * 
@@ -19,7 +19,6 @@
 
 SerialLoopTask::SerialLoopTask(uint16_t id) : ArduinoTasker::Task(id)
 {
-
     // Making sure that serial is working
     if (!Serial)
     {
@@ -27,15 +26,18 @@ SerialLoopTask::SerialLoopTask(uint16_t id) : ArduinoTasker::Task(id)
     }
 }
 
+SerialLoopTask::~SerialLoopTask()
+{
+    Serial.print("SerialLoopTask deleted");
+}
+
 void SerialLoopTask::update(uint32_t deltaT)
 {
-    if (_currentLoop >= _loops)
+    if (_accumulatedDt >= _dt)
     {
-        Serial.print(_loops);
-        Serial.println(" loops!");
-
-        _currentLoop = 0;
+        Serial.println("=== SerialLoopTask===\nOne second passed!");
+        _accumulatedDt = 0;
     }
 
-    _currentLoop++;
+    _accumulatedDt += deltaT;
 }

@@ -1,5 +1,5 @@
 /*
-* Two tasks of the same type example for Arduino Tasker
+* Multiple tasks example for Arduino Tasker
 * 
 * This example shows how to run many (or more) takas of the same or different type. See CustomTasksPool.h
 * This example is similar to Blink, but it blinks two different LEDs in different intervals

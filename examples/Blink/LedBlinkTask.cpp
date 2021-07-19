@@ -3,6 +3,10 @@
 * 
 * This file implements all declared functions from LedBlinkTask.h
 * 
+* This task blinks led on ledPin around every second (or other interval) indefinitely.
+*
+* Because it is managed by TaskManager it is not safe to use external pointers.
+* 
 * by Jakub Wójcik 2021
 * jakub.wojcik2017@gmail.com
 * 

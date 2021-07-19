@@ -16,7 +16,10 @@ namespace ArduinoTasker
 
     TaskManager::~TaskManager()
     {
-        delete _runningTasks;
+        if (_runningTasks != nullptr)
+        {
+            delete _runningTasks;
+        }
     }
 
     Task *TaskManager::fetch(uint16_t id, bool wrapId)
@@ -55,13 +58,46 @@ namespace ArduinoTasker
 
     void TaskManager::startAllTasks()
     {
-        for (uint16_t i = 0; i < _tasksPool->count(); i++)
+        if (_tasksPool != nullptr)
         {
-            this->startTaskByPointer(this->fetch(i, false));
+            for (uint16_t i = 0; i < _tasksPool->count(); i++)
+            {
+                this->startTaskByPointer(this->fetch(i, false));
+            }
         }
     }
 
-    void TaskManager::stopTask(uint16_t id)
+    bool TaskManager::stopTask(uint16_t id)
+    {
+        if (id >= _runningTasks->size())
+        {
+            return false;
+        }
+
+        Task *task = nullptr;
+
+        for (uint16_t i = 0; i < (uint16_t)_runningTasks->size(); i++)
+        {
+            task = _runningTasks->get(i);
+
+            if (task->canBeDeleted())
+            {
+                if (task->getId() == id)
+                {
+                    _runningTasks->remove(i);
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+    void TaskManager::stopAllTasks()
     {
         Task *task = nullptr;
 
@@ -69,16 +105,11 @@ namespace ArduinoTasker
         {
             task = _runningTasks->get(i);
 
-            if (task->getId() == id)
+            if (task->canBeDeleted())
             {
                 _runningTasks->remove(i);
             }
         }
-    }
-
-    void TaskManager::stopAllTasks()
-    {
-        _runningTasks->clear();
     }
 
     uint32_t TaskManager::getDelta(Task *task)
@@ -113,6 +144,46 @@ namespace ArduinoTasker
     void TaskManager::setTasksPool(TasksPool *tasksPool)
     {
         _tasksPool = tasksPool;
+    }
+
+    bool TaskManager::isTaskDone(uint16_t id)
+    {
+        Task *task = this->getTask(id);
+        return (task == nullptr ? true : task->isDone());
+    }
+
+    bool TaskManager::isTaskRunning(uint16_t id)
+    {
+        Task *task = this->getTask(id);
+        return (task == nullptr ? false : !task->isDone());
+    }
+
+    bool TaskManager::doesTaskExist(uint16_t id)
+    {
+        Task *task = this->getTask(id);
+        return task == nullptr;
+    }
+
+    Task *TaskManager::getTask(uint16_t id)
+    {
+        if (id >= _runningTasks->size())
+        {
+            return nullptr;
+        }
+
+        Task *task = nullptr;
+
+        for (uint16_t i = 0; i < (uint16_t)_runningTasks->size(); i++)
+        {
+            task = _runningTasks->get(i);
+
+            if (task->getId() == id)
+            {
+                return task;
+            }
+        }
+
+        return nullptr;
     }
 
 } // namespace ArduinoTasker

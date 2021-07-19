@@ -32,24 +32,25 @@ namespace ArduinoTasker
 
         /**
          * @brief  Adds new instance of task with given id from TasksPool to memory and runs it
-         * @warning Task bust be instanced by new keyword!
          * @param  task: Instance of task
          */
         bool startTaskByPointer(Task *task);
 
         /**
-         * @brief  Adds new instance of all tass from TasksPool to memory and runs them
+         * @brief  Adds new instance of all tasks from TasksPool to memory and runs them.
+         * @warning Works only when TasksPool is set!
          */
         void startAllTasks();
 
         /**
          * @brief  Removes task with given id from memory if exists
          * @param  id: id of task
+         * @retval True - task stopped, False - task marked as "Do not delete" or does not exist 
          */
-        void stopTask(uint16_t id);
+        bool stopTask(uint16_t id);
 
         /**
-         * @brief  Removes all task from memory
+         * @brief  Removes all task from memory if the are not marked as "Do not delete"
          */
         void stopAllTasks();
 
@@ -62,6 +63,34 @@ namespace ArduinoTasker
          * @brief Sets _taskPool
          */
         void setTasksPool(TasksPool *tasksPool);
+
+        /**
+         * @brief  Is given task done
+         * @param  id: id of task
+         * @retval True - task done, False - task is running or does not exist
+         */
+        bool isTaskDone(uint16_t id);
+
+        /**
+         * @brief  Is given task running
+         * @param  id: id of task
+         * @retval True - task is running, False - task does not exist or is done
+         */
+        bool isTaskRunning(uint16_t id);
+
+        /**
+         * @brief  Is given task exist in running task buffer
+         * @param  id: id of task
+         * @retval True - task is exists, False - task does not exist
+         */
+        bool doesTaskExist(uint16_t id);
+
+        /**
+         * @brief  Get running task by id
+         * @param  id: id of task
+         * @retval Pointer to task or nullptr
+         */
+        Task *getTask(uint16_t id);
 
     protected:
         TasksPool *_tasksPool = nullptr;
