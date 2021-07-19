@@ -36,12 +36,12 @@ namespace ArduinoTasker
         bool isDone();
 
         /**
-         * @retval If this task should be deleted from memory
+         * @retval If this task can be deleted from memory
          */
         bool canBeDeleted();
 
         /**
-         * @brief Marks taks as don not delete. So it is not deleted when it's finished
+         * @brief Marks task as don not delete. So it is not deleted when it's finished
          */
         void doNotDelete();
 

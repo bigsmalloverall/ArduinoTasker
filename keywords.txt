@@ -1,0 +1,40 @@
+# Syntax Coloring Map For ArduinoTasker
+
+# Datatypes (KEYWORD1)
+Task	KEYWORD1
+TaskManager	KEYWORD1
+TasksPool	KEYWORD1
+
+# Methods and Functions (KEYWORD2)
+getId	KEYWORD2
+getLastUpdateTime	KEYWORD2
+isDone	KEYWORD2
+canBeDeleted	KEYWORD2
+doNotDelete	KEYWORD2
+finish	KEYWORD2
+update	KEYWORD2
+cache	KEYWORD2
+endUpdate	KEYWORD2
+fetch	KEYWORD2
+startTask	KEYWORD2
+startTaskByPointer	KEYWORD2
+startAllTasks	KEYWORD2
+stopTask	KEYWORD2
+stopAllTasks	KEYWORD2
+setTasksPool	KEYWORD2
+isTaskDone	KEYWORD2
+isTaskRunning	KEYWORD2
+doesTaskExist	KEYWORD2
+getTask	KEYWORD2
+removeTaskFromRunningTasks	KEYWORD2
+tasks	KEYWORD2
+count	KEYWORD2
+
+# Instances (KEYWORD2)
+manager	KEYWORD2
+
+# Structures(KEYWORD3)
+Status	KEYWORD3
+
+# Constants (LITERAL1)
+ArduinoTasker	LITERAL1
