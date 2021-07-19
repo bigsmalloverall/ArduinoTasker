@@ -69,11 +69,6 @@ namespace ArduinoTasker
 
     bool TaskManager::stopTask(uint16_t id)
     {
-        if (id >= _runningTasks->size())
-        {
-            return false;
-        }
-
         Task *task = nullptr;
 
         for (uint16_t i = 0; i < (uint16_t)_runningTasks->size(); i++)
@@ -84,6 +79,7 @@ namespace ArduinoTasker
             {
                 if (task->getId() == id)
                 {
+                    // delete task;
                     _runningTasks->remove(i);
                     return true;
                 }
@@ -127,9 +123,9 @@ namespace ArduinoTasker
 
             if (task != nullptr)
             {
-                if (task->isDone() && task->canBeDeleted())
+                if (task->isDone())
                 {
-                    stopTask(task->getId());
+                    this->stopTask(task->getId(), i);
                 }
                 else
                 {
@@ -161,16 +157,11 @@ namespace ArduinoTasker
     bool TaskManager::doesTaskExist(uint16_t id)
     {
         Task *task = this->getTask(id);
-        return task == nullptr;
+        return task != nullptr;
     }
 
     Task *TaskManager::getTask(uint16_t id)
     {
-        if (id >= _runningTasks->size())
-        {
-            return nullptr;
-        }
-
         Task *task = nullptr;
 
         for (uint16_t i = 0; i < (uint16_t)_runningTasks->size(); i++)
@@ -184,6 +175,38 @@ namespace ArduinoTasker
         }
 
         return nullptr;
+    }
+
+    void TaskManager::removeTaskFromRunningTasks(uint16_t id)
+    {
+        Task *task = nullptr;
+
+        for (uint16_t i = 0; i < (uint16_t)_runningTasks->size(); i++)
+        {
+            task = _runningTasks->get(i);
+
+            if (task->getId() == id)
+            {
+                _runningTasks->remove(i);
+                return;
+            }
+        }
+    }
+
+    bool TaskManager::stopTask(uint16_t id, uint16_t pos)
+    {
+        if (pos >= _runningTasks->size())
+        {
+            return false;
+        }
+        
+        Task * task = _runningTasks->get(pos);
+
+        if (task->getId() == id)
+        {
+            _runningTasks->remove(pos);
+            //delete task;
+        }
     }
 
 } // namespace ArduinoTasker

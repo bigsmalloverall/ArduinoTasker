@@ -16,6 +16,11 @@ namespace ArduinoTasker
         Task(uint16_t id, bool deleteWhenDone = true);
 
         /**
+         * @brief  Destructor
+         */
+        virtual ~Task();
+
+        /**
          * @retval id of task
          */
         uint16_t getId();

@@ -92,6 +92,13 @@ namespace ArduinoTasker
          */
         Task *getTask(uint16_t id);
 
+
+        /**
+         * @brief  Removes task (if exist) from list of running tasks
+         * @param  id: of task
+         */
+        void removeTaskFromRunningTasks(uint16_t id);
+
     protected:
         TasksPool *_tasksPool = nullptr;
         LinkedList<Task *> *_runningTasks;
@@ -100,6 +107,14 @@ namespace ArduinoTasker
          * @retval Delta time from last task setp in us 
          */
         uint32_t getDelta(Task *task);
+
+        /**
+         * @brief  Removes task with given id from _runningTasks at position pos
+         * @param  id: id of task
+         * @param pos: index of task in _runningTasks list
+         * @retval True - task stopped, False - task marked as "Do not delete" or does not exist 
+         */
+        bool stopTask(uint16_t id, uint16_t pos);
     };
 
 } // namespace ArduinoTasker
