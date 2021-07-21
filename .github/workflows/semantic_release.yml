@@ -43,6 +43,14 @@ jobs:
     - name: Update package.json version
       if: hashFiles('package.json') != ''
       run: echo "$( jq '.version = "${{ needs.semantic-release.outputs.version }}"' package.json )" > package.json
+    
+    - name: Update library.properties version
+      if: hashFiles('library.properties') != ''
+      #${versionWithV#?} deletes first char so v1.0.0 becomes 1.0.0
+      run: |
+        versionWithV="${{ needs.semantic-release.outputs.version }}"
+        version=${versionWithV#?}
+        sed -i "s/^\(version\s*=\s*\).*$/\1$version/" "library.properties"
 
     - name: Update changelog.md
       run: |
