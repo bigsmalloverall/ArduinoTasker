@@ -22,7 +22,9 @@ jobs:
         run: sudo apt-get install -y python3.9
 
       - name: Download PlatformIO CLI
-        run: python3 -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/master/scripts/get-platformio.py)"
+        run: |
+          python3 -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/master/scripts/get-platformio.py)"
+          echo ${pio --version}
 
       - name: Setting up PlatformIO
         run: |
@@ -31,7 +33,8 @@ jobs:
           ln -s ~/.platformio/penv/bin/piodebuggdb /usr/local/bin/piodebuggdb
       
       - name: Check final lib package
-        # run: echo ${pio package pack }
-        run: | 
+        run: |
+          echo ${pio package pack}
           ls -ila
-          pio --version
+
+          
