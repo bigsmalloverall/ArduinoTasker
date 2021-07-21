@@ -1,0 +1,29 @@
+name: Platform IO Release
+on:
+  release:
+    release:
+      types: [published]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Update packages
+        run: sudo apt-get update && sudo apt-get upgrade
+
+      - name: Download curl
+        run: sudo apt-get install -y curl
+
+      - name: Download Python
+        run: sudo apt-get install -y python3.9
+
+      - name: Download PlatformIO CLI
+        run: python3 -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/master/scripts/get-platformio.py)"
+
+      - name: Setting up PlatformIO
+        run: |
+          ln -s ~/.platformio/penv/bin/platformio /usr/local/bin/platformio
+          ln -s ~/.platformio/penv/bin/pio /usr/local/bin/pio
+          ln -s ~/.platformio/penv/bin/piodebuggdb /usr/local/bin/piodebuggdb
