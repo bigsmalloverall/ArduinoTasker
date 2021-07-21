@@ -17,6 +17,7 @@ jobs:
           uses: mathieudutour/github-tag-action@v5.5
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
+            tag_prefix:
 
         - name: Create a GitHub release
           uses: actions/create-release@v1
@@ -46,10 +47,8 @@ jobs:
     
     - name: Update library.properties version
       if: hashFiles('library.properties') != ''
-      #${versionWithV#?} deletes first char so v1.0.0 becomes 1.0.0
       run: |
-        versionWithV="${{ needs.semantic-release.outputs.version }}"
-        version=${versionWithV#?}
+        version="${{ needs.semantic-release.outputs.version }}"
         sed -i "s/^\(version\s*=\s*\).*$/\1$version/" "library.properties"
 
     - name: Create changelog.md
