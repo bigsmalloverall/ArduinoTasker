@@ -9,12 +9,15 @@
   },
   "authors": [
     {
+      "name": "Ivan Seidel Gomes"
+    },
+    {
       "name": "Jakub Wójcik",
       "email": "jakub.wojcik2017@gmail.com",
       "maintainer": true
     }
   ],
-  "license": "GNU v3.0",
+  "license": "GPL-3.0-only",
   "frameworks": "*",
   "platforms": "*"
 }
