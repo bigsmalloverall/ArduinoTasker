@@ -17,7 +17,7 @@ jobs:
           uses: mathieudutour/github-tag-action@v5.5
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
-            tag_prefix:
+            tag_prefix: ""
         
   repo-self-update:
     runs-on: ubuntu-latest
