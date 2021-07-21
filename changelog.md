@@ -1,3 +1,11 @@
+### [1.2.5](https://github.com/bigsmalloverall/SimpleTaskManager/compare/1.2.4...1.2.5) (2021-07-21)
+
+
+### Continuous Integration
+
+* **liblary.json:** action now recognise this file ([644db0e](https://github.com/bigsmalloverall/SimpleTaskManager/commit/644db0eff3481b7fe0d7a51c8ad6d5f29f097017))
+
+
 ### [1.2.4](https://github.com/bigsmalloverall/SimpleTaskManager/compare/1.2.3...1.2.4) (2021-07-21)
 
 
