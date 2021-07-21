@@ -1,22 +1,20 @@
 {
-    "name": "SimpleTaskManager",
-    "version": "1.0.0",
-    "description": "SimpleTaskManager - simple task dispatcher for Arduino based devices with limited memory. Organize code into simple self contained tasks, run many of them concurrently or in time intervals.",
-    "keywords": "simple, task, manager, tasker, dispatch, time, interval, low, limited, small, memory, ",
-    "repository":
+  "name": "SimpleTaskManager",
+  "version": "v1.2.1",
+  "description": "SimpleTaskManager - simple task dispatcher for Arduino based devices with limited memory. Organize code into simple self contained tasks, run many of them concurrently or in time intervals.",
+  "keywords": "simple, task, manager, tasker, dispatch, time, interval, low, limited, small, memory, ",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bigsmalloverall/SimpleTaskManager"
+  },
+  "authors": [
     {
-      "type": "git",
-      "url": "https://github.com/bigsmalloverall/SimpleTaskManager"
-    },
-    "authors":
-    [
-      {
-        "name": "Jakub Wójcik",
-        "email": "jakub.wojcik2017@gmail.com",
-        "maintainer": true
-      }
-    ],
-    "license": "GNU v3.0",
-    "frameworks": "*",
-    "platforms": "*"
-  }
+      "name": "Jakub Wójcik",
+      "email": "jakub.wojcik2017@gmail.com",
+      "maintainer": true
+    }
+  ],
+  "license": "GNU v3.0",
+  "frameworks": "*",
+  "platforms": "*"
+}
