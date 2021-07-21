@@ -1,3 +1,11 @@
+### [1.2.4](https://github.com/bigsmalloverall/SimpleTaskManager/compare/1.2.3...1.2.4) (2021-07-21)
+
+
+### Continuous Integration
+
+* **workflows:** reversed pipeline ([4c0dc83](https://github.com/bigsmalloverall/SimpleTaskManager/commit/4c0dc832d2772c942e2b1b968b2cfd98a5cda2e8))
+
+
 ### [1.2.3](https://github.com/bigsmalloverall/SimpleTaskManager/compare/v1.2.2...1.2.3) (2021-07-21)
 
 
