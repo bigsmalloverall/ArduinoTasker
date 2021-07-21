@@ -52,6 +52,10 @@ jobs:
         version=${versionWithV#?}
         sed -i "s/^\(version\s*=\s*\).*$/\1$version/" "library.properties"
 
+    - name: Create changelog.md
+      if: hashFiles('changelog.md') == ''
+      run: touch changelog.md
+
     - name: Update changelog.md
       run: |
         newChangelog="${{ needs.semantic-release.outputs.changelog }}"
