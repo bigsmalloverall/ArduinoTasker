@@ -1,3 +1,11 @@
+### [1.2.3](https://github.com/bigsmalloverall/SimpleTaskManager/compare/v1.2.2...1.2.3) (2021-07-21)
+
+
+### Bug Fixes
+
+* **workflows:** release version no longer has v in name ([212a62f](https://github.com/bigsmalloverall/SimpleTaskManager/commit/212a62feec948177664314a572013135727e64b8))
+
+
 ### [1.2.2](https://github.com/bigsmalloverall/SimpleTaskManager/compare/v1.2.1...v1.2.2) (2021-07-21)
 
 
