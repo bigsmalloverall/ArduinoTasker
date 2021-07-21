@@ -32,9 +32,9 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y jq
 
-    - name: Update package.json version
-      if: hashFiles('package.json') != ''
-      run: echo "$( jq '.version = "${{ needs.semantic-release-dry-run.outputs.version }}"' package.json )" > package.json
+    - name: Update library.json version
+      if: hashFiles('library.json') != ''
+      run: echo "$( jq '.version = "${{ needs.semantic-release-dry-run.outputs.version }}"' library.json )" > library.json
     
     - name: Update library.properties version
       if: hashFiles('library.properties') != ''
